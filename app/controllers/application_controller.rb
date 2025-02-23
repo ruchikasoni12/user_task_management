@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 	def authenticate_user
 		header = request.headers["token"]
 		token = header.split.last if header
-		decoded = JsonWebToken.decode(token)
 		begin
 	    decoded = JsonWebToken.decode(token)
 	    @current_user = User.find(decoded["user_id"])

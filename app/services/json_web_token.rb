@@ -19,9 +19,5 @@ class JsonWebToken
 	def self.decode(token)
 		decoded_token = JWT.decode(token, SECRET_KEY)[0]
 		HashWithIndifferentAccess.new(decoded_token)
-	rescue JWT::ExpiredSignature
-		raise StandardError, "Token has expired"
-	rescue JWT::DecodeError
-		raise StandardError, "Invalid token"
 	end
 end
